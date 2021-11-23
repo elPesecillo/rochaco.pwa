@@ -5,18 +5,10 @@ import * as layoutActions from "../../redux/actions/layoutActions";
 import { Images } from "../../constants";
 import UserInfo from "../user/UserInfo";
 import { useTranslation } from "next-i18next";
+import Menu from "./Menu";
+import MenuIcon from "./MenuIcon";
 
-// import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-
-// export async function getStaticProps({ locale }) {
-//   return {
-//     props: {
-//       ...(await serverSideTranslations(locale)),
-//     },
-//   };
-// }
-
-function Drawer({ children, menuCollapsed, toggleMenu }) {
+function Drawer({ children, menuCollapsed, toggleMenu, menus }) {
   const { t } = useTranslation();
   return (
     <div className=" shadow bg-base-200 drawer min-h-screen">
@@ -46,14 +38,7 @@ function Drawer({ children, menuCollapsed, toggleMenu }) {
             />
           </div>
           <UserInfo />
-          <ul className="h-full">
-            <li className="">
-              <a>Menu Item</a>
-            </li>
-            <li>
-              <a>Menu Item</a>
-            </li>
-          </ul>
+          <Menu menus={menus} />
           <ul>
             <li>
               <a
@@ -61,6 +46,9 @@ function Drawer({ children, menuCollapsed, toggleMenu }) {
                   window.location.href = "/auth/logout";
                 }}
               >
+                <div className="mx-2">
+                  <MenuIcon screenName={"logout"} />
+                </div>
                 {t("menu_logout")}
               </a>
             </li>
@@ -80,6 +68,7 @@ Drawer.propTypes = {
 function mapStateToProps(state) {
   return {
     menuCollapsed: state.layout.menuCollapsed,
+    menus: state.suburbConfig?.menus,
   };
 }
 

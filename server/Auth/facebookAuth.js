@@ -63,7 +63,7 @@ app.get("/auth/facebook/callback", function (req, res, next) {
       .then((auth) => {
         session.token = auth.token;
         //res.redirect(`/externalAuth?token=${auth.token}`);
-        res.redirect(`/Home`);
+        res.redirect(`/Start`);
       })
       .catch((err) => {
         let encodedInfo = base64.encode(

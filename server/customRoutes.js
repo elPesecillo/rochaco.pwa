@@ -18,7 +18,7 @@ app.post("/auth/byUsrPwd", async (req, res) => {
       req.session.token = result.data.message;
       req.session.user = user;
     }
-    res.redirect(`/Home`);
+    res.redirect(`/Start`);
   } catch (err) {
     res.status("401").json(err);
   }

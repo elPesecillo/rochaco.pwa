@@ -82,7 +82,7 @@ function Login() {
         captchaToken: token,
       });
       setLoading(false);
-      router.push("/Home");
+      router.push("/Start");
     } catch (ex) {
       console.log(ex);
       setLoading(false);

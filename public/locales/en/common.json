@@ -233,6 +233,7 @@
   "text_no_users": "There is not users",
   "text_manage_access": "Manage Access",
   "text_assign_access": "Assign Access",
+  "text_page_not_found": "Page not found",
   "valid_code": "Please type a code.",
   "valid_date_init_greater_current": "Start date can't be previous to actual date",
   "valid_date_init_greater_end": "Start date can't be later than final date",
