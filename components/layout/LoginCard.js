@@ -25,4 +25,5 @@ function LoginCard({ children }) {
 LoginCard.propTypes = {
   children: PropTypes.object.isRequired,
 };
+
 export default LoginCard;

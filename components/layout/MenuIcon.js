@@ -15,6 +15,7 @@ import {
   FaSignOutAlt,
   FaRegQuestionCircle,
 } from "react-icons/fa";
+import PropTypes from "prop-types";
 
 function MenuIcon({ screenName, size = 16, className = "" }) {
   const getIcon = () => {
@@ -55,5 +56,11 @@ function MenuIcon({ screenName, size = 16, className = "" }) {
   };
   return getIcon();
 }
+
+MenuIcon.propTypes = {
+  screenName: PropTypes.string,
+  size: PropTypes.number,
+  className: PropTypes.string,
+};
 
 export default MenuIcon;

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { useTranslation } from "next-i18next";
+import PropTypes from "prop-types";
 
 function TabContent({ childComponents, selectedMenu }) {
   const { t } = useTranslation();
@@ -21,6 +22,11 @@ function TabContent({ childComponents, selectedMenu }) {
       )}
     </>
   );
+}
+
+TabContent.propTypes = {  
+  childComponents: PropTypes.array,
+  selectedMenu: PropTypes.object,
 }
 
 function mapStateToProps(state) {

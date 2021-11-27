@@ -52,6 +52,7 @@ Navbar.propTypes = {
   toggleMenu: PropTypes.func,
   menuCollapsed: PropTypes.bool,
   menuTitle: PropTypes.string,
+  user: PropTypes.object,
 };
 
 function mapStateToProps(state) {

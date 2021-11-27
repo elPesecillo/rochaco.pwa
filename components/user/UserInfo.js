@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Images } from "../../constants";
+import PropTypes from "prop-types";
 
 function UserInfo({ user }) {
   let profileImage = user?.photoUrl ?? Images.AvatarBlank?.default?.src;
@@ -20,6 +21,10 @@ function UserInfo({ user }) {
     </div>
   );
 }
+
+UserInfo.propTypes = {
+  user: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = (state) => {
   return {

@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
@@ -33,5 +32,10 @@ function Menu({ menus, setMenuSelected }) {
     </ul>
   );
 }
+
+Menu.propTypes = {
+  menus: PropTypes.array,
+  setMenuSelected: PropTypes.func,
+};
 
 export default Menu;

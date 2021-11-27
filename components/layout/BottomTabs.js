@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import * as layoutActions from "../../redux/actions/layoutActions";
 import { useTranslation } from "next-i18next";
 import MenuIcon from "./MenuIcon";
+import PropTypes from "prop-types";
 
 function BottomTabs({ menus, selectedMenu, setMenuSelected }) {
   const { t } = useTranslation();
@@ -67,6 +68,12 @@ function BottomTabs({ menus, selectedMenu, setMenuSelected }) {
     </ul>
   );
 }
+
+BottomTabs.propTypes = {
+  menus: PropTypes.array,
+  selectedMenu: PropTypes.object,
+  setMenuSelected: PropTypes.func,
+};
 
 function mapStateToProps(state) {
   return {

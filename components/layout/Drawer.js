@@ -69,6 +69,7 @@ Drawer.propTypes = {
   children: PropTypes.array.isRequired,
   menuCollapsed: PropTypes.bool,
   toggleMenu: PropTypes.func.isRequired,
+  menus: PropTypes.array,
   setMenuSelected: PropTypes.func.isRequired,
 };
 

@@ -1,9 +1,9 @@
 import React from "react";
 import { Images } from "../../constants";
-import Image from "next/image";
 import { FaBars } from "react-icons/fa";
+import PropTypes from "prop-types";
 
-export default function Navbar({ transparent, onMenuClick, showMenus = true }) {
+function Navbar({ transparent, onMenuClick, showMenus = true }) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
 
   return (
@@ -140,3 +140,11 @@ export default function Navbar({ transparent, onMenuClick, showMenus = true }) {
     </nav>
   );
 }
+
+Navbar.propTypes = {
+  transparent: PropTypes.bool,
+  onMenuClick: PropTypes.func,
+  showMenus: PropTypes.bool,
+};
+
+export default Navbar;
