@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import Navbar from "../components/landing/Navbar";
 import Footer from "../components/landing/Footer.js";
@@ -9,12 +9,60 @@ import {
   FaQrcode,
   FaMoneyBillWave,
   FaUsersCog,
+  FaDownload,
+  FaWhatsapp,
+  FaFacebookF,
+  FaTwitter,
 } from "react-icons/fa";
+import { getMobileOperatingSystem } from "../utils/commons";
 
 export default function Landing() {
+  const characteristicsRef = useRef(null);
+  const downloadsRef = useRef(null);
+  const contactRef = useRef(null);
+
+  const handleRedirectToStore = () => {
+    const os = getMobileOperatingSystem();
+    console.log(os);
+    if (os === "ios") {
+      window;
+      window.open(
+        "https://apps.apple.com/us/app/neighbyapp/id1558283976",
+        "_blank"
+      );
+    } else {
+      window.open(
+        "https://play.google.com/store/apps/details?id=com.elpes.NeighbyApp",
+        "_blank"
+      );
+    }
+  };
+
+  const handleMenuClick = (item, e) => {
+    e.preventDefault();
+    switch (item) {
+      case "caracteristicas":
+        characteristicsRef.current.scrollIntoView({
+          behavior: "smooth",
+        });
+        break;
+      case "descargas":
+        downloadsRef.current.scrollIntoView({ behavior: "smooth" });
+        break;
+      case "contactanos":
+        contactRef.current.scrollIntoView({ behavior: "smooth" });
+        break;
+      case "login":
+        window.location.href = "/auth/Login";
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <>
-      <Navbar transparent />
+      <Navbar transparent onMenuClick={handleMenuClick} />
       <main>
         <div
           className="relative pt-16 pb-32 flex content-center items-center justify-center"
@@ -32,6 +80,9 @@ export default function Landing() {
             // style={{
             //   backgroundImage:
             //     "url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80')",
+            // }}
+            // style={{
+            //   backgroundImage: `url(${Images.Brochure?.default?.src})`,
             // }}
           >
             <span
@@ -77,7 +128,7 @@ export default function Landing() {
           </div>
         </div>
 
-        <section className="pb-20 bg-gray-300 -mt-24">
+        <section className="pb-20 bg-gray-300 -mt-24" ref={characteristicsRef}>
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap">
               <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
@@ -132,7 +183,7 @@ export default function Landing() {
             </div>
 
             <div className="flex flex-wrap items-center mt-32">
-              <div className="w-full md:w-6/12 px-4 mr-auto ml-auto">
+              <div className="w-full md:w-6/12 px-4 mr-auto ml-auto text-center">
                 <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
                   <FaUsersCog size={40} />
                 </div>
@@ -175,8 +226,8 @@ export default function Landing() {
               <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-primary">
                   <Image
-                    alt="..."
-                    src={Images.NeighbyLogin?.default?.src}
+                    alt="neighby login"
+                    src={Images.LoginApple?.default?.src}
                     width={300}
                     height={650}
                     className="w-full align-middle rounded-t-lg"
@@ -210,7 +261,7 @@ export default function Landing() {
           </div>
         </section>
 
-        <section className="relative py-20">
+        <section className="relative py-20" ref={downloadsRef}>
           <div
             className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
             style={{ height: "80px" }}
@@ -233,376 +284,103 @@ export default function Landing() {
 
           <div className="container mx-auto px-4">
             <div className="items-center flex flex-wrap">
-              <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
+              <div className="w-full md:w-4/12 ml-auto mr-auto px-4 bg-primary rounded-lg">
                 <img
-                  alt="..."
+                  alt="neighby login"
+                  src={Images.LoginApple?.default?.src}
                   className="max-w-full rounded-lg shadow-lg"
-                  src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
                 />
               </div>
-              <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
-                <div className="md:pr-12">
-                  <div className="text-pink-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-pink-300">
-                    <i className="fas fa-rocket text-xl"></i>
+              <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
+                <div className="md:pr-12 text-center">
+                  <div className="text-primary p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blue-100">
+                    <FaDownload size={40} />
                   </div>
                   <h3 className="text-3xl font-semibold">Descargas</h3>
                   <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                    The extension comes with three pre-built pages to help you
-                    get started faster. You can change the text and images and
-                    you're good to go.
+                    ¡Descarga la app es muy fácil!
                   </p>
-                  <ul className="list-none mt-6">
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
-                            <i className="fas fa-fingerprint"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">
-                            Carefully crafted components
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
-                            <i className="fab fa-html5"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">
-                            Amazing page examples
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
-                            <i className="far fa-paper-plane"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">Dynamic components</h4>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
+                  <div
+                    className="my-3 cursor-pointer"
+                    onClick={handleRedirectToStore}
+                  >
+                    <img
+                      alt="app_store"
+                      src={Images.AppStores.default.src}
+                      className="rounded-lg shadow-sm hover:shadow-lg"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="pt-20 pb-48">
-          <div className="container mx-auto px-4">
+        <section
+          className="pt-20 pb-48 bg-gray-700"
+          // style={{
+          //   backgroundImage: `url(${Images.Brochure?.default?.src})`,
+          //   backgroundSize: "cover"
+          // }}
+          ref={contactRef}
+        >
+          <div className="container mx-auto px-4 filter blur-none">
             <div className="flex flex-wrap justify-center text-center mb-24">
               <div className="w-full lg:w-6/12 px-4">
-                <h2 className="text-4xl font-semibold">Here are our heroes</h2>
-                <p className="text-lg leading-relaxed m-4 text-gray-600">
-                  According to the National Oceanic and Atmospheric
-                  Administration, Ted, Scambos, NSIDClead scentist, puts the
-                  potentially record maximum.
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-wrap">
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-                <div className="px-6">
-                  <img
-                    alt="..."
-                    // src={require("assets/img/team-1-800x800.jpg").default}
-                    className="shadow-lg rounded-full max-w-full mx-auto"
-                    style={{ maxWidth: "120px" }}
-                  />
-                  <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">Ryan Tompson</h5>
-                    <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                      Web Developer
-                    </p>
-                    <div className="mt-6">
-                      <button
-                        className="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </button>
-                      <button
-                        className="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-facebook-f"></i>
-                      </button>
-                      <button
-                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-dribbble"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-                <div className="px-6">
-                  <img
-                    alt="..."
-                    // src={require("assets/img/team-2-800x800.jpg").default}
-                    className="shadow-lg rounded-full max-w-full mx-auto"
-                    style={{ maxWidth: "120px" }}
-                  />
-                  <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">Romina Hadid</h5>
-                    <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                      Marketing Specialist
-                    </p>
-                    <div className="mt-6">
-                      <button
-                        className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-google"></i>
-                      </button>
-                      <button
-                        className="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-facebook-f"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-                <div className="px-6">
-                  <img
-                    alt="..."
-                    // src={require("assets/img/team-3-800x800.jpg").default}
-                    className="shadow-lg rounded-full max-w-full mx-auto"
-                    style={{ maxWidth: "120px" }}
-                  />
-                  <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">Alexa Smith</h5>
-                    <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                      UI/UX Designer
-                    </p>
-                    <div className="mt-6">
-                      <button
-                        className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-google"></i>
-                      </button>
-                      <button
-                        className="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </button>
-                      <button
-                        className="bg-gray-800 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-instagram"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-                <div className="px-6">
-                  <img
-                    alt="..."
-                    // src={require("assets/img/team-4-470x470.png").default}
-                    className="shadow-lg rounded-full max-w-full mx-auto"
-                    style={{ maxWidth: "120px" }}
-                  />
-                  <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">Jenna Kardi</h5>
-                    <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                      Founder and CEO
-                    </p>
-                    <div className="mt-6">
-                      <button
-                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-dribbble"></i>
-                      </button>
-                      <button
-                        className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-google"></i>
-                      </button>
-                      <button
-                        className="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </button>
-                      <button
-                        className="bg-gray-800 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-instagram"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="pb-20 relative block bg-gray-900">
-          <div
-            className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
-            style={{ height: "80px" }}
-          >
-            <svg
-              className="absolute bottom-0 overflow-hidden"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-              version="1.1"
-              viewBox="0 0 2560 100"
-              x="0"
-              y="0"
-            >
-              <polygon
-                className="text-gray-900 fill-current"
-                points="2560 0 2560 100 0 100"
-              ></polygon>
-            </svg>
-          </div>
-
-          <div className="container mx-auto px-4 lg:pt-24 lg:pb-64">
-            <div className="flex flex-wrap text-center justify-center">
-              <div className="w-full lg:w-6/12 px-4">
-                <h2 className="text-4xl font-semibold text-white">
-                  Build something
+                <h2 className="text-4xl text-white font-semibold">
+                  Contactanos
                 </h2>
-                <p className="text-lg leading-relaxed mt-4 mb-4 text-gray-500">
-                  Put the potentially record low maximum sea ice extent tihs
-                  year down to low ice. According to the National Oceanic and
-                  Atmospheric Administration, Ted, Scambos.
+                <p className="text-lg leading-relaxed m-4 text-gray-200">
+                  ¿Te interesa conocer más?
+                </p>
+                <p className="text-md leading-relaxed m-4 text-gray-300">
+                  Contactanos por medio de nuestras redes sociales
                 </p>
               </div>
             </div>
-            <div className="flex flex-wrap mt-12 justify-center">
-              <div className="w-full lg:w-3/12 px-4 text-center">
-                <div className="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
-                  <i className="fas fa-medal text-xl"></i>
-                </div>
-                <h6 className="text-xl mt-5 font-semibold text-white">
-                  Excelent Services
-                </h6>
-                <p className="mt-2 mb-4 text-gray-500">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-              </div>
-              <div className="w-full lg:w-3/12 px-4 text-center">
-                <div className="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
-                  <i className="fas fa-poll text-xl"></i>
-                </div>
-                <h5 className="text-xl mt-5 font-semibold text-white">
-                  Grow your market
-                </h5>
-                <p className="mt-2 mb-4 text-gray-500">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-              </div>
-              <div className="w-full lg:w-3/12 px-4 text-center">
-                <div className="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
-                  <i className="fas fa-lightbulb text-xl"></i>
-                </div>
-                <h5 className="text-xl mt-5 font-semibold text-white">
-                  Launch time
-                </h5>
-                <p className="mt-2 mb-4 text-gray-500">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section className="relative block py-24 lg:pt-0 bg-gray-900">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-wrap justify-center lg:-mt-64 -mt-48">
-              <div className="w-full lg:w-6/12 px-4">
-                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300">
-                  <div className="flex-auto p-5 lg:p-10">
-                    <h4 className="text-2xl font-semibold">
-                      Want to work with us?
-                    </h4>
-                    <p className="leading-relaxed mt-1 mb-4 text-gray-600">
-                      Complete this form and we will get back to you in 24
-                      hours.
-                    </p>
-                    <div className="relative w-full mb-3 mt-8">
-                      <label
-                        className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                        htmlFor="full-name"
-                      >
-                        Full Name
-                      </label>
-                      <input
-                        type="text"
-                        className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                        placeholder="Full Name"
-                        style={{ transition: "all .15s ease" }}
-                      />
-                    </div>
-
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                        htmlFor="email"
-                      >
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                        placeholder="Email"
-                        style={{ transition: "all .15s ease" }}
-                      />
-                    </div>
-
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                        htmlFor="message"
-                      >
-                        Message
-                      </label>
-                      <textarea
-                        rows="4"
-                        cols="80"
-                        className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                        placeholder="Type a message..."
-                      />
-                    </div>
-                    <div className="text-center mt-6">
-                      <button
-                        className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                        style={{ transition: "all .15s ease" }}
-                      >
-                        Send Message
-                      </button>
-                    </div>
+            <div className="flex flex-wrap justify-center">
+              <a
+                href="https://wa.me/5218116120630"
+                target="_blank"
+                className="relative flex flex-col min-w-0 break-words bg-white lg:w-3/12 m-8 shadow-lg rounded-lg cursor-pointer text-center"
+              >
+                <div className="px-4 py-5 flex-auto hover:shadow-inner">
+                  <div className="text-white p-3 text-center inline-flex items-center justify-center w-20 h-20 mb-5 shadow-lg rounded-full bg-green-400">
+                    <FaWhatsapp size={66} />
                   </div>
+                  <h6 className="text-xl font-semibold text-gray-500">
+                    Whatsapp
+                  </h6>
                 </div>
-              </div>
+              </a>
+              <a
+                href="https://www.facebook.com/TheNeighbyApp"
+                target="_blank"
+                className="relative flex flex-col min-w-0 break-words bg-white lg:w-3/12 m-8 shadow-lg rounded-lg cursor-pointer text-center"
+              >
+                <div className="px-4 py-5 flex-auto hover:shadow-inner">
+                  <div className="text-white p-3 text-center inline-flex items-center justify-center w-20 h-20 mb-5 shadow-lg rounded-full bg-blue-600">
+                    <FaFacebookF size={65} />
+                  </div>
+                  <h6 className="text-xl font-semibold text-gray-500">
+                    Facebook
+                  </h6>
+                </div>
+              </a>
+              <a
+                href="https://twitter.com/NeighbyA"
+                target="_blank"
+                className="relative flex flex-col min-w-0 break-words bg-white lg:w-3/12 m-8 shadow-lg rounded-lg cursor-pointer text-center"
+              >
+                <div className="px-4 py-5 flex-auto hover:shadow-inner">
+                  <div className="text-white p-3 text-center inline-flex items-center justify-center w-20 h-20 mb-5 shadow-lg rounded-full bg-blue-400">
+                    <FaTwitter size={70} />
+                  </div>
+                  <h6 className="text-xl font-semibold text-gray-500">
+                    Twitter
+                  </h6>
+                </div>
+              </a>
             </div>
           </div>
         </section>
@@ -611,73 +389,3 @@ export default function Landing() {
     </>
   );
 }
-
-// import Head from "next/head";
-// import Image from "next/image";
-//import styles from "../styles/Home.module.css";
-
-// export default function Index() {
-//   return (
-//     <div className={styles.container}>
-//       <Head>
-//         <title>Create Next App</title>
-//         <meta name="description" content="Generated by create next app" />
-//         <link rel="icon" href="/favicon.ico" />
-//       </Head>
-
-//       <main className={styles.main}>
-//         <h1 className={styles.title}>
-//           Welcome to <a href="https://nextjs.org">Next.js!</a>
-//         </h1>
-
-//         <p className={styles.description}>
-//           Get started by editing{" "}
-//           <code className={styles.code}>pages/index.js</code>
-//         </p>
-
-//         <div className={styles.grid}>
-//           <a href="https://nextjs.org/docs" className={styles.card}>
-//             <h2>Documentation &rarr;</h2>
-//             <p>Find in-depth information about Next.js features and API.</p>
-//           </a>
-
-//           <a href="https://nextjs.org/learn" className={styles.card}>
-//             <h2>Learn &rarr;</h2>
-//             <p>Learn about Next.js in an interactive course with quizzes!</p>
-//           </a>
-
-//           <a
-//             href="https://github.com/vercel/next.js/tree/master/examples"
-//             className={styles.card}
-//           >
-//             <h2>Examples &rarr;</h2>
-//             <p>Discover and deploy boilerplate example Next.js projects.</p>
-//           </a>
-
-//           <a
-//             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-//             className={styles.card}
-//           >
-//             <h2>Deploy &rarr;</h2>
-//             <p>
-//               Instantly deploy your Next.js site to a public URL with Vercel.
-//             </p>
-//           </a>
-//         </div>
-//       </main>
-
-//       <footer className={styles.footer}>
-//         <a
-//           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Powered by{" "}
-//           <span className={styles.logo}>
-//             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-//           </span>
-//         </a>
-//       </footer>
-//     </div>
-//   );
-// }

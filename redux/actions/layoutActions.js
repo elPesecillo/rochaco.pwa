@@ -11,3 +11,7 @@ export function setMenuIcon(menuIcon) {
 export function setMenuTitle(menuTitle) {
   return { type: types.SET_MENU_TITLE, menuTitle };
 }
+
+export function setMenuSelected(selectedMenu) {
+  return { type: types.SET_MENU_SELECTED, selectedMenu };
+}

@@ -3,6 +3,7 @@ export const TOGGLE_MENU = "TOGGLE_MENU";
 export const SET_MENU_ICON = "SET_MENU_ICON";
 export const SET_MENU_TITLE = "SET_MENU_TITLE";
 export const MENU_COLLAPSE = "MENU_COLLAPSE";
+export const SET_MENU_SELECTED = "SET_MENU_SELECTED";
 
 // loading types
 export const BEGIN_API_CALL = "BEGIN_API_CALL";

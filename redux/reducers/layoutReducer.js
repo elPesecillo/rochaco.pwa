@@ -10,6 +10,8 @@ export default function layoutReducer(state = initialState.layout, action) {
       return { ...state, menuTitle: action.menuTitle };
     case types.MENU_COLLAPSE:
       return { ...state, collapsedOption: action.menuCollapsed };
+    case types.SET_MENU_SELECTED:
+      return { ...state, selectedMenu: action.selectedMenu };
     default:
       return state;
   }

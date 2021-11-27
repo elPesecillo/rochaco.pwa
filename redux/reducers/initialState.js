@@ -5,6 +5,10 @@ export default {
     menuTitle: "",
     menuIcon: "icon-home",
     collapsedOption: "",
+    selectedMenu: {
+      item: "",
+      subItem: "",
+    },
   },
   user: {
     favs: [],

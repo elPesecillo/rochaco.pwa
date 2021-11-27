@@ -8,7 +8,13 @@ import { useTranslation } from "next-i18next";
 import Menu from "./Menu";
 import MenuIcon from "./MenuIcon";
 
-function Drawer({ children, menuCollapsed, toggleMenu, menus }) {
+function Drawer({
+  children,
+  menuCollapsed,
+  toggleMenu,
+  menus,
+  setMenuSelected,
+}) {
   const { t } = useTranslation();
   return (
     <div className=" shadow bg-base-200 drawer min-h-screen">
@@ -38,7 +44,7 @@ function Drawer({ children, menuCollapsed, toggleMenu, menus }) {
             />
           </div>
           <UserInfo />
-          <Menu menus={menus} />
+          <Menu menus={menus} setMenuSelected={setMenuSelected} />
           <ul>
             <li>
               <a
@@ -63,6 +69,7 @@ Drawer.propTypes = {
   children: PropTypes.array.isRequired,
   menuCollapsed: PropTypes.bool,
   toggleMenu: PropTypes.func.isRequired,
+  setMenuSelected: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -74,5 +81,6 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   toggleMenu: layoutActions.toggleMenu,
+  setMenuSelected: layoutActions.setMenuSelected,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Drawer);

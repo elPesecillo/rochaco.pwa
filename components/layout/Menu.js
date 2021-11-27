@@ -5,23 +5,24 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import MenuIcon from "./MenuIcon";
 
-function Menu({ menus }) {
+function Menu({ menus, setMenuSelected }) {
   const router = useRouter();
   const { t } = useTranslation();
 
-  const handleClick = (e, href) => {
+  const handleClick = (e, menu) => {
     e.preventDefault();
-    router.push(href);
+    router.push(`/${menu.item}`);
+    setMenuSelected({
+      item: `/${menu.item}`,
+      subItem: menu?.childMenus[0]?.item,
+    });
   };
   return (
     <ul className="h-full pb-2">
       {menus?.length > 0 &&
         menus.map((menu, index) => (
           <li key={index}>
-            <a
-              href={`/${menu.item}`}
-              onClick={(e) => handleClick(e, `/${menu.item}`)}
-            >
+            <a href={`/${menu.item}`} onClick={(e) => handleClick(e, menu)}>
               <div className="mx-2">
                 <MenuIcon screenName={menu.item} />
               </div>

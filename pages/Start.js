@@ -1,7 +1,4 @@
-import Head from "next/head";
-import Image from "next/image";
 import { connect } from "react-redux";
-import styles from "../styles/Home.module.css";
 import Layout from "../components/layout/Layout";
 import * as authCommons from "../server/Utils/authCommons";
 import * as userAction from "../redux/actions/userActions";
@@ -11,6 +8,8 @@ import * as suburbConfigActions from "../redux/actions/suburbConfigActions";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import MenuIcon from "../components/layout/MenuIcon";
+import TabContent from "../components/layout/TabContent";
+import * as layoutActions from "../redux/actions/layoutActions";
 
 export async function getServerSideProps(ctx) {
   let { req, locale } = ctx;
@@ -27,7 +26,13 @@ export async function getServerSideProps(ctx) {
     : { props: { user, ...translations } };
 }
 
-const Home = function ({ user, getUserInfo, loadSuburbConfig, menus }) {
+const Home = function ({
+  user,
+  getUserInfo,
+  loadSuburbConfig,
+  menus,
+  setMenuSelected,
+}) {
   useEffect(() => {
     getUserInfo();
   }, []);
@@ -42,20 +47,21 @@ const Home = function ({ user, getUserInfo, loadSuburbConfig, menus }) {
     return [].concat.apply([], homeMenus);
   };
 
-  const handleClick = (e, href) => {
+  const handleClick = (e, menu) => {
     e.preventDefault();
-    router.push(href);
+    router.push(menu.navigate);
+    setMenuSelected({ item: menu.navigate, subItem: menu.screen });
   };
 
-  return (
-    <Layout>
+  const homeComponent = () => {
+    return (
       <div className="grid grid-cols-1 lg:grid-cols-2 cursor-pointer">
         {getHomeMenus(menus).map((menu, index) => (
           <div
             key={index}
             style={{ backgroundColor: menu.color }}
             className="card shadow-2xl lg:card-side bg-primary text-primary-content m-3"
-            onClick={(e) => handleClick(e, menu.navigate)}
+            onClick={(e) => handleClick(e, menu)}
           >
             <div className="card-body">
               <p className="text-2xl">{t(menu.label)}</p>
@@ -68,6 +74,16 @@ const Home = function ({ user, getUserInfo, loadSuburbConfig, menus }) {
           </div>
         ))}
       </div>
+    );
+  };
+
+  return (
+    <Layout>
+      {
+        <TabContent
+          childComponents={[{ component: homeComponent(), key: "home" }]}
+        />
+      }
     </Layout>
   );
 };
@@ -80,6 +96,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   getUserInfo: userAction.getUserInfo,
   loadSuburbConfig: suburbConfigActions.loadSuburbConfig,
+  setMenuSelected: layoutActions.setMenuSelected,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
