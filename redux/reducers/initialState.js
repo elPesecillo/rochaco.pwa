@@ -21,7 +21,9 @@ export default {
     isPasswordTemporary: false,
     tempPassword: null,
   },
+  userInvite: "",
   auth: "",
+  myVisits: [],
   searchVisit: {
     streets: [],
     streetNumbers: [],

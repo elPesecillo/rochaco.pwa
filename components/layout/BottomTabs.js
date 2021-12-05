@@ -14,15 +14,16 @@ function BottomTabs({ menus, selectedMenu, setMenuSelected }) {
     if (router.route !== selectedMenu?.item) {
       setMenuSelected({
         item: router.route,
-        subItem: menus.filter((menu) => `/${menu.item}` === router.route)[0]
-          ?.childMenus[0]?.item,
+        subItem:
+          menus?.filter((menu) => `/${menu.item}` === router.route)[0]
+            ?.childMenus[0]?.item || "",
       });
     }
   }, [router.pathname]);
 
   useEffect(() => {
     setTabMenus(
-      menus.filter((menu) => `/${menu.item}` === selectedMenu?.item)[0]
+      menus?.filter((menu) => `/${menu.item}` === selectedMenu?.item)[0]
         ?.childMenus || []
     );
   }, [selectedMenu]);

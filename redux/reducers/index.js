@@ -4,7 +4,9 @@ import apiCallsInProgress from "./apiStatusReducer";
 import searchVisit from "./searchVisitReducer";
 import auth from "./authReducer";
 import user from "./userReducer";
+import userInvite from "./inviteReducer";
 import suburbConfig from "./suburbConfigReducer";
+import myVisits from "./myVisitsReducer";
 
 const rootReducer = combineReducers({
   apiCallsInProgress,
@@ -12,7 +14,9 @@ const rootReducer = combineReducers({
   searchVisit,
   auth,
   user,
+  userInvite,
   suburbConfig,
+  myVisits,
 });
 
 export default rootReducer;

@@ -15,8 +15,8 @@ function UserInfo({ user }) {
         </div>
       </div>
       <div className="flex-1 pl-2 pt-1">
-        <div className="font-semibold">{user.name}</div>
-        <div className="font-light">{user.suburb?.name}</div>
+        <div className="font-semibold">{user?.name}</div>
+        <div className="font-light">{user?.suburb?.name}</div>
       </div>
     </div>
   );

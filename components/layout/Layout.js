@@ -4,11 +4,16 @@ import Drawer from "./Drawer";
 import Navbar from "./Navbar";
 import BottomTabs from "./BottomTabs";
 
+import useWindowSize from "../../hooks/useWindowSize";
+
 function Layout({ children }) {
+  const { height } = useWindowSize();
   return (
     <Drawer>
       <Navbar />
-      <div className="relative">{children}</div>
+      <div className="relative" style={{ minHeight: height - 120 || 200 }}>
+        {children}
+      </div>
       <BottomTabs />
     </Drawer>
   );

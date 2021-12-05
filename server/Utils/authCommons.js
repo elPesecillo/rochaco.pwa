@@ -23,7 +23,23 @@ const isValidToken = (token) => {
   return token && expirationDate > currentDate ? true : false;
 };
 
+const isValidPage = async (ctx, serverSideTranslations) => {
+  let { req, locale } = ctx;
+  const { token, user } = req.session;
+  const tokenValid = isValidToken(token);
+  const translations = await serverSideTranslations(locale);
+  return !tokenValid
+    ? {
+        redirect: {
+          destination: "/auth/Login",
+          permanent: false,
+        },
+      }
+    : { props: { user, ...translations } };
+};
+
 module.exports = {
   getJwtPayload,
   isValidToken,
+  isValidPage,
 };

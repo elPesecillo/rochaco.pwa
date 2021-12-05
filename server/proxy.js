@@ -22,6 +22,10 @@ const getMap = (url) => {
   return foundMap;
 };
 
+const addApiKey = (path, key) => {
+  return path.includes("?") ? `${path}&code=${key}` : `${path}?code=${key}`;
+};
+
 const rewriteURL = (host, url) => {
   let completeUrl = `${host}${url}`;
   let path = getMap(url);
@@ -31,7 +35,9 @@ const rewriteURL = (host, url) => {
       regex,
       path.pathRewrite[Object.keys(path.pathRewrite)[0]]
     );
-    return `${path.target}${replaced}`;
+    return `${path.target}${
+      path.code ? addApiKey(replaced, path.code) : replaced
+    }`;
   } else return completeUrl;
 };
 
