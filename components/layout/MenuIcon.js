@@ -14,6 +14,7 @@ import {
   FaPaperPlane,
   FaSignOutAlt,
   FaRegQuestionCircle,
+  FaUserCog,
 } from "react-icons/fa";
 import PropTypes from "prop-types";
 
@@ -35,6 +36,8 @@ function MenuIcon({ screenName, size = 16, className = "" }) {
         return <FaQrcode size={size} className={className} />;
       case "arrivemanual":
         return <FaEdit size={size} className={className} />;
+      case "manage":
+        return <FaUserCog size={size} className={className} />;
       case "admin":
         return <FaUserPlus size={size} className={className} />;
       case "payments":

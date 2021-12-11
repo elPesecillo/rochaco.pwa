@@ -7,25 +7,13 @@ export const addInvite = async (inviteData) => {
   return await Api.post(
     `/api/service/services/AddVisit`,
     { ...inviteData }
-    // ({
-    //   userId,
-    //   userName,
-    //   suburbId,
-    //   validFrom,
-    //   validTo,
-    //   street,
-    //   streetNumber,
-    //   guests,
-    //   useTimeInterval,
-    //   personalQR,
-    // } = inviteData)
   );
 };
-export const DeactivateQRCode = async (data) => {
-  return await Api.post(
-    `/api/service/services/DeactivateQRCode`,
-    ({ accessControlId, guestId } = data)
-  );
+export const DeactivateQRCode = async ({ accessControlId, guestId }) => {
+  return await Api.post(`/api/service/services/DeactivateQRCode`, {
+    accessControlId,
+    guestId,
+  });
 };
 
 export const getArriveCodeInfo = async (codeId, suburbId) => {

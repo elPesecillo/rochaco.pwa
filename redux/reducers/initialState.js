@@ -32,4 +32,16 @@ export default {
     pendingVisitSelected: null,
   },
   suburbConfig: {},
+  visitsReport: [],
+  payments: {
+    paymentHistory: [],
+    paymentPeriods: [],
+    paymentTypes: [],
+    totalAmount: "0.00",
+    paymentBalance: {},
+    paymentBalanceBySuburb: [],
+  },
+  admin: {
+    addresses: [],
+  },
 };

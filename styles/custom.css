@@ -1,3 +1,7 @@
 .btn {
   @apply rounded-full;
 }
+
+.ag-watermark{
+  display: none !important;
+}

@@ -404,8 +404,11 @@ function Friend({
       >
         <div className="modal-box">
           <div className="w-full text-right">
-            <button className="btn btn-secondary" onClick={handleCloseModal}>
-              <FaTimes size={18} />
+            <button
+              className="btn btn-secondary btn-sm h-10 rounded-full"
+              onClick={handleCloseModal}
+            >
+              <FaTimes size={16} />
             </button>
           </div>
           <Favorites onEnd={handleCloseModal} />
