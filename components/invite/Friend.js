@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import FriendList from "./shared/FriendList";
 import { dataUrlToFile } from "../../utils/commons";
-import Loading from "../common/loading";
+import Loading from "../common/Loading";
 import Favorites from "./shared/Favorites";
 
 function Friend({
