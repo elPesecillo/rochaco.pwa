@@ -119,7 +119,7 @@ function BalanceForm({ period, onBackClick }) {
               />
             </div>
           )}
-          {period?.payment?.vouchers?.length === 0 && (
+          {!period?.payment?.vouchers && (
             <>
               <h3 class="text-center">No hay comprobantes</h3>
               <div className="form-control my-2">
