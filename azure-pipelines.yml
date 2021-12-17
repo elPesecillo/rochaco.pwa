@@ -35,9 +35,9 @@ stages:
         versionSpec: '12.x'
       displayName: 'Install Node.js'
     - powershell: 
-        New-Item -Path $(System.DefaultWorkingDirectory) -Name ".env" -Force -Value "$(environmentQA)"
-        Get-Content -Path $(System.DefaultWorkingDirectory).env
-        Get-ChildItem -Path $(System.DefaultWorkingDirectory)
+        New-Item -Path $(System.DefaultWorkingDirectory)\ -Name ".env" -Force -Value "$(environmentQA)"
+        Get-Content -Path $(System.DefaultWorkingDirectory)\.env
+        Get-ChildItem -Path $(System.DefaultWorkingDirectory)\
       displayName: 'Create ".env" file'
     - script: |
         npm install
