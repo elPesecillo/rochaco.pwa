@@ -5,3 +5,7 @@
 .ag-watermark{
   display: none !important;
 }
+
+.ag-cell-wrapper{
+  width: 100%;
+}
