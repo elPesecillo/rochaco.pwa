@@ -46,6 +46,10 @@ const proxyHandler = async (req, res, next) => {
     const { token } = req.session;
     req.headers = { ...req.headers, Authorization: `${token}` };
     const map = getMap(req.baseUrl);
+    console.log(
+      "accediendo a:",
+      rewriteURL(`${req.protocol}://${req.get("Host")}`, req.originalUrl)
+    );
     if (map) {
       proxy(map.target, {
         proxyReqPathResolver: function (req) {
