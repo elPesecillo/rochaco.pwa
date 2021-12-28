@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node server/index.js",
     "build": "next build",
-    "start": "node_modules/next/dist/bin/next start --port ${PORT:-3000}",
+    "start": "NODE_ENV=production node server/index.js",
     "lint": "next lint"
   },
   "dependencies": {
