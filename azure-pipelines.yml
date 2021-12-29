@@ -38,6 +38,23 @@ stages:
         npm install
         npm run build --if-present
       displayName: 'npm install, build and test'
+      env:
+        ADMIN_API_HOST: $(ADMIN_API_HOST)
+        BLOB_API: $(BLOB_API)
+        DATABASE_URL: $(DATABASE_URL)
+        FACEBOOK_API_KEY: $(FACEBOOK_API_KEY)
+        FACEBOOK_API_SECRET: $(FACEBOOK_API_SECRET)
+        FACEBOOK_CALLBACK_URL: $(FACEBOOK_CALLBACK_URL)
+        MONGO_SESSION_CONNECTION: $(MONGO_SESSION_CONNECTION)
+        NEXT_PUBLIC_RECAPTCHA_WEB: $(NEXT_PUBLIC_RECAPTCHA_WEB)
+        NEXTAUTH_URL: $(NEXTAUTH_URL)
+        PAYMENTS_API: $(PAYMENTS_API)
+        PAYMENTS_API_CODE: $(PAYMENTS_API_CODE)
+        RECAPTCHA_SECRET: $(RECAPTCHA_SECRET)
+        SERVICES_API: $(SERVICES_API)
+        SERVICES_API_CODE: $(SERVICES_API_CODE)
+        SESSION_SECRET: $(SESSION_SECRET)
+        TOKEN_SECRET: $(TOKEN_SECRET)
 
     - script: zip -r --symlinks '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip' .
 
