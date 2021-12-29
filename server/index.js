@@ -16,28 +16,34 @@ const handle = app.getRequestHandler();
 const port = parseInt(process.env.PORT, 10) || 3000;
 const { MONGO_SESSION_CONNECTION } = process.env;
 
-app.prepare().then(() => {
-  const server = express()
-    .use(
-      session({
-        store: MongoStore.create({ mongoUrl: MONGO_SESSION_CONNECTION }),
-        secret: config.SESSION_SECRET,
-        saveUninitialized: true,
-        resave: true,
-      })
-    )
-    .use(express.json())
-    .use(facebookAuth)
-    .use(customRoutes)
-    .use(proxy);
+app
+  .prepare()
+  .then(() => {
+    const server = express()
+      .use(
+        session({
+          store: MongoStore.create({ mongoUrl: MONGO_SESSION_CONNECTION }),
+          secret: config.SESSION_SECRET,
+          saveUninitialized: true,
+          resave: true,
+        })
+      )
+      .use(express.json())
+      .use(facebookAuth)
+      .use(customRoutes)
+      .use(proxy);
 
-  server.all("*", (req, res) => {
-    return handle(req, res);
+    server.all("*", (req, res) => {
+      return handle(req, res);
+    });
+    server.listen(port, (err) => {
+      if (err) {
+        throw err;
+      }
+      console.log(`> Ready on http://localhost:${port}`);
+    });
+  })
+  .catch((ex) => {
+    console.error(ex.stack);
+    process.exit(1);
   });
-  server.listen(port, (err) => {
-    if (err) {
-      throw err;
-    }
-    console.log(`> Ready on http://localhost:${port}`);
-  });
-});
