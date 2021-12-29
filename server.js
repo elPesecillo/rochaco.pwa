@@ -4,12 +4,12 @@ const next = require("next");
 const express = require("express");
 const session = require("express-session");
 
-const facebookAuth = require("./Auth/facebookAuth");
+const facebookAuth = require("./server/Auth/facebookAuth");
 const MongoStore = require("connect-mongo");
-const customRoutes = require("./customRoutes");
-const proxy = require("./proxy");
+const customRoutes = require("./server/customRoutes");
+const proxy = require("./server/proxy");
 
-const config = require("./config");
+const config = require("./server/config");
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
